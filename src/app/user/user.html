@@ -1,0 +1,51 @@
+<form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+  <div class="auth-wrapper">
+    <div class="auth-content">
+      <div class="card">
+        <div class="row align-items-center text-center">
+          <div class="col-md-12">
+            <div class="card-body">
+             
+            <h4 class="mb-3 f-w-400">Add New Employee</h4>
+
+           
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="feather icon-user"></i></span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="username"
+                       [(ngModel)]="user.username" required />
+              </div>
+
+           
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2"><i class="feather icon-mail"></i></span>
+                <input type="email" class="form-control" placeholder="Email address" aria-label="Email"
+                       name="email" [(ngModel)]="user.email" required />
+              </div>
+
+             
+              <div class="input-group mb-4">
+                <span class="input-group-text" id="basic-addon3"><i class="feather icon-lock"></i></span>
+                <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                       name="password" [(ngModel)]="user.password" required />
+              </div>
+
+         
+              <div class="input-group mb-4">
+                <span class="input-group-text"><i class="feather icon-image"></i></span>
+                <input type="file" class="form-control" (change)="onFileChange($event)" required />
+              </div>
+
+         
+             
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+              </div>
+
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
