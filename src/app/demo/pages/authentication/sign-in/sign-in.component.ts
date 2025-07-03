@@ -1,10 +1,8 @@
-// angular import
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-
-// project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { UserService } from 'src/app/user';
+import { UserAuthService } from 'src/app/UserAuthService';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -17,16 +15,25 @@ export class SignInComponent {
   email = '';
   password = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
 
-  onSubmit() {
-    this.userService.signIn(this.email, this.password).subscribe({
-      next: (user) => {
-        alert('Bienvenue ' + user.username);
-        // tu peux stocker le user dans localStorage ici
-        this.router.navigate(['/tables']); // ou dashboard
-      },
-      error: (err) => alert('Erreur : ' + err.error)
-    });
-  }
+    private router: Router,
+    private userAuth: UserAuthService 
+  ) {}
+
+ onSubmit() {
+  this.userAuth.signIn(this.email, this.password).subscribe({
+    next: (user) => {
+      alert('Bienvenue ' + user.username);
+
+      // Stocker id + rôle de l'utilisateur connecté
+      this.userAuth.setUser(user);
+
+      // Rediriger vers une autre page
+      this.router.navigate(['/tables']);
+    },
+    error: (err) => alert('Erreur : ' + err.error)
+  });
+}
+
 }

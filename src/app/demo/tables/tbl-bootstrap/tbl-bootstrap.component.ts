@@ -11,13 +11,7 @@ import { UserService } from 'src/app/user';
   styleUrls: ['./tbl-bootstrap.component.scss']
 })
 export class TblBootstrapComponent implements OnInit {
-  user = {
-    username: '',
-    email: '',
-    password: '',
-    role: 'ADMIN'
-  };
-
+ 
   users: any[] = [];
   selectedFile!: File;
 constructor(private userService: UserService, private router: Router) {}
@@ -43,20 +37,8 @@ constructor(private userService: UserService, private router: Router) {}
     this.selectedFile = event.target.files[0];
   }
 
-  onSubmit() {
-    if (!this.selectedFile) {
-      alert('Photo requise');
-      return;
-    }
 
-    this.userService.createUser(this.user, this.selectedFile).subscribe({
-      next: () => {
-        alert('Utilisateur créé !');
-        this.loadUsers();
-      },
-      error: (err) => alert('Erreur : ' + err.message)
-    });
-  }
+
 
 editUser(user: any) {
   this.router.navigate(['/forms', user.id]);

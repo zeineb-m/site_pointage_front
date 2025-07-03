@@ -10,13 +10,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  createUser(user: any, photo: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', photo);
-    formData.append('user', JSON.stringify(user));
+ 
+  createUserFormData(formData: FormData): Observable<any> {
     return this.http.post(this.apiUrl, formData);
   }
-
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
@@ -38,9 +35,6 @@ export class UserService {
 
   getUserById(id: string): Observable<any> {
   return this.http.get(`${this.apiUrl}/${id}`);
-}
-signIn(email: string, password: string): Observable<any> {
-  return this.http.post(`${this.apiUrl}/signin`, { email, password });
 }
 
 }
